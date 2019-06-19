@@ -1,0 +1,87 @@
+#include "dcola.h"
+#include "pila.h"
+#include <iostream>
+#include <string>
+#include "lista.h"
+using namespace std;
+void invierteSecuenciasNoVocales(Lista<char>& mensaje){
+	Lista<char>::Iterator ini1= mensaje.begin();
+	Lista<char>::Iterator fin1 = mensaje.end();
+	Lista<char>::Iterator ini2= mensaje.begin();
+	Lista<char>::Iterator fin2 = mensaje.end();
+	
+	while (ini1!=fin1 && ini2!=fin2){
+		Pila<char>aux;
+		if (ini1.elem()=='a'||ini1.elem()=='o'||ini1.elem()=='u'||ini1.elem()=='i'||ini1.elem()=='e'){
+			ini1.next();
+			
+			
+			while ((ini1!=fin1) && (ini1.elem()!='a' && ini1.elem()!='o' && ini1.elem()!='u' && ini1.elem()!='i' && ini1.elem()!='e')){
+				
+				aux.apila(ini1.elem());
+				ini1.next();
+			}
+			ini2.next();
+			while (!aux.esVacia()){
+				ini2.set(aux.cima());
+				aux.desapila();
+				ini2.next();
+			}
+		}
+		else{
+			ini1.next();
+			ini2.next();
+		}
+	}
+
+}
+void construyeMensaje(const string & cadena, Lista<char> &mensaje ){
+	for (int i =0; i < cadena.size(); i++){
+		mensaje.pon_final(cadena[i]);
+	}
+}
+void mostrarMensaje(Lista<char> &mensaje ){
+	invierteSecuenciasNoVocales(mensaje);
+
+	Lista<char>::ConstIterator ini= mensaje.cbegin();
+	Lista<char>::ConstIterator fin = mensaje.cend();
+	while (ini!=fin){
+		cout << ini.elem();
+		ini.next();
+	}
+	cout << endl;
+}
+int main() {
+   string cadena;
+   while (getline(cin,cadena)){
+	   Lista<char> mensaje;
+	   construyeMensaje(cadena,mensaje);
+	   mostrarMensaje(mensaje);
+   }
+   return 0;
+}	  
+/* EN EL h
+void enredar(){
+		if (!esVacia()){
+			Nodo *actual=_prim;
+			Nodo *ultimo=_ult;
+			while (actual!=ultimo && actual->_sig!=ultimo){
+				Nodo *siguiente=actual->_sig;
+				Nodo *anterior=ultimo->_ant;
+
+				actual->_sig=ultimo;
+				ultimo->_ant= actual;
+				ultimo->_sig=siguiente;
+				siguiente->_ant=ultimo;
+				_ult=anterior;
+
+				actual=siguiente;
+				ultimo=anterior;
+			}
+			ultimo->_sig=NULL;
+		}
+
+	}
+
+
+*/
