@@ -1,0 +1,15 @@
+﻿Compilación iniciada a las 25/05/2017 19:15:59.
+     1>Proyecto "C:\Mi espacio de trabajo Visual Studio\Libreria\Libreria\Libreria.vcxproj" en el nodo 2 (Build destinos).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Libreria.cpp
+         Libreria.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Mi espacio de trabajo Visual Studio\Libreria\Debug\Libreria.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Mi espacio de trabajo Visual Studio\Libreria\Debug\Libreria.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Mi espacio de trabajo Visual Studio\Libreria\Debug\Libreria.lib" /MACHINE:X86 Debug\Libreria.obj
+         Debug\Libro.obj
+         Debug\Main.obj
+         Libreria.vcxproj -> C:\Mi espacio de trabajo Visual Studio\Libreria\Debug\Libreria.exe
+     1>Compilación del proyecto terminada "C:\Mi espacio de trabajo Visual Studio\Libreria\Libreria\Libreria.vcxproj" (Build destinos).
+
+Compilación correcta.
+
+Tiempo transcurrido 00:00:00.78
