@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+const int N =5;
+int suma_heoricos(int v[]){
+	int s=0;
+	int k=0;
+	int anterior=0;
+	int actual=1;
+	while (k < N){
+		if (v[k]> actual)
+			s++;
+		anterior= actual;
+		actual= actual+anterior;
+	k++;
+	}
+	return s;
+}
+
+int main(){
+	
+	int v [N];
+	v[0]=1;
+	v[1]=3; 
+	v[2]=13; 
+	v[3]=21;
+	v[4]=7;
+	
+	cout << suma_heoricos(v) << endl;
+	system("pause");
+}
+/*P={ 0 < n <= long(v)}
+  fun suma_heroico(int v [], int n)return int s
+  Q= {s = # i: 0<=i<n: heroico(v,i)}
+  heroico(v,i)={paratodo j: 0<=j<i: v[j]> fi}
+  I= 0<=k<N y s = # i: 0<=i<n: heroico(v,i) y actual = anterior y actual= actual+anterior
+  Cota: N-k
+  */
