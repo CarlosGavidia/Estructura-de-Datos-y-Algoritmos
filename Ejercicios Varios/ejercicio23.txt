@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+using namespace std;
+const int N =7;
+bool credito (bool v[]){
+	int k=0; 
+	while (k <N && v[k])
+		k++;
+	while (k <N && !v[k])
+		k++;
+
+	return k==N;
+}
+int main(){
+	bool v [N];
+	v[0]=true;
+	v[1]=true; 
+	v[2]=true; 
+	v[3]=true;
+	v[4]=false;
+	v[5]=false;
+	v[6]=false;
+	cout << credito (v) << endl;
+	system("pause");
+}
+/*
+I1=0<=k<N y paratodo i : 0 <=i<k : A[i]
+I2=r = existe p : 0 <=p < k: (paratodoi : 0 <=i<p : A[i]) ^ (paratodoj : p <=j<k : ¬A[j])
+cota: N-k
+*/
