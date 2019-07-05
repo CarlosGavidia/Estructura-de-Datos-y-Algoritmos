@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+using namespace std;
+const int N =7;
+int credito (int v[]){
+	int i=1;
+	int max =v[0];
+	int min=v[0];
+	while (i<N){
+		if (v[i]> max)
+			max= v[i];
+		if (v[i]< min)
+			min= v[i];
+		i++;
+	}
+	return max-min;
+
+}
+int main(){
+	int v [N];
+	v[0]=1;
+	v[1]=3; 
+	v[2]=11; 
+	v[3]=4;
+	v[4]=7;
+	v[5]=8;
+	v[6]=3;
+	cout << credito (v) << endl;
+	system("pause");
+}
+/*
+I= 0 <=i<=N y max =max j: 0<=j<i:v[j] y min =min w: 0<=w<i:v[w] y r = max-min
+cota: N-i
+*/
