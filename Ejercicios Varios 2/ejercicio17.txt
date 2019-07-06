@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+int igual (int v [],int i, int n, int dinero){
+	int r;
+	/*if (a>b)
+	r=0;*/
+	else{
+	if (i==(n/2)-1)
+		r= (v[i]*dinero)+(v[i]*dinero);
+		
+	else
+		r= igual ( v , i+1, n, dinero*2)+(v[i]*dinero)+(v[i]*dinero);
+	}
+	
+	return r;
+
+}
+
+int main(){
+	int v[6];
+	v[0]=1;
+	v[1]=1;
+	v[2]=1;
+	v[3]=1;
+	v[4]=1;
+	v[5]=1;
+	cout << igual(v,0,6,1) << endl;
+	
+	system("pause");
+}

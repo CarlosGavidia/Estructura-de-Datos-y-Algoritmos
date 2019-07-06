@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+pre: n>=0
+int igual (int n){
+	int r;
+	
+	if (n <=9)
+		r= 9-n;
+	else 
+		r= (igual (n/10)*10) +(9-(n%10));
+
+	return r;
+
+}
+post: r=10^digito(n)-1-n
+
+int main(){
+	
+	cout << igual(146720) << endl;
+	
+	system("pause");
+}
