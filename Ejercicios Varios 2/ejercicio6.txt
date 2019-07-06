@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int cuadrado(int n){
+	
+	int r;
+	if (n <2)
+		r=n;
+	else{
+		r= cuadrado(n/2)*10+(n%2);
+	}
+	return r;
+	
+}
+
+int main(){
+	
+	cout << cuadrado(28) << endl;
+	
+	system("pause");
+}
