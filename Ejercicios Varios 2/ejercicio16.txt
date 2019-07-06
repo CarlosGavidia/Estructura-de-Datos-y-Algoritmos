@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+bool igual (int v [], int a , int b){
+	int r;
+	bool b
+	if (a==b+1){
+		r=b;
+		b=false;
+	}
+
+	else{
+		int m = (a+b)/2;
+		if (v[m]<m)
+			r=igual ( v ,m+1 ,b );
+		else if (v[m]>m)
+			r=igual ( v ,a ,m-1 );
+		else if (v[m]==m){
+			r=m;
+			b= true;
+		}
+	}
+
+	return b;
+}
+//coste: si es vacio es constante, si no logaritmica
+int main(){
+	int v[5];
+	v[0]=-2;
+	v[1]=0;
+	v[2]=1;
+	v[3]=3;
+	v[4]=6;
+	cout << igual(v,0,4) << endl;
+	
+	system("pause");
+}
