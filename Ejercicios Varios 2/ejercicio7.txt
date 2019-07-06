@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int fib(int n){
+	
+	int r;
+	if (n==0)
+		r=0;
+	else if (n==1)
+		r=1;
+	else if (n>1)
+		r= n*fib(n-1);
+	return r;
+	
+}
+void dosFib( int n, int& r, int&s){
+	if (n>=0){
+		r = fib(n);		s = fib(n + 1);	}}
+int main(){
+	int r,s;
+	dosFib(  3,  r, s);
+	cout << r <<" " <<s << endl;
+	
+	system("pause");
+}

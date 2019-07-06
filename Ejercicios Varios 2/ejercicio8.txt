@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+int factorial(int n){
+	int r;
+	if (n==1)
+		r=1;
+	else
+		r= n*factorial(n-1);
+
+	return r;
+
+}
+int combinatorio(int m, int n){
+	
+	return (factorial(m))/(factorial(n)*(factorial(m-n)));
+}
+
+int main(){
+	
+	cout << combinatorio(7, 4) << endl;
+	
+	system("pause");
+}
