@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int cuadrado(int n, int dos){
+	
+	int r;
+	if (n <10)
+		r=n*dos;
+	else{
+		r= cuadrado( n/10,dos*2)+(n%10)*dos;
+	}
+	return r;
+	
+}
+
+int main(){
+	
+	cout << cuadrado(10110,1) << endl;
+	
+	system("pause");
+}
