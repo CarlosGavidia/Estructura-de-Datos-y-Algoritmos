@@ -1,0 +1,147 @@
+#include <iostream>
+
+using namespace std;
+const int N = 5;
+const int M =8;
+const int L=3;
+struct punto{
+	char letra;
+	int fila;
+	int columna;
+};
+punto sigDireccion (int dir, punto actual,char Matriz [N][M]){
+	punto final=actual;
+	if (dir==0)
+		final.columna++;
+	else if (dir==1)
+		final.fila++;
+	else if (dir==2)
+		final.fila--;
+	else if (dir==3)
+		final.columna--;
+
+	final.letra= Matriz[final.fila][final.columna];
+	return final;
+}
+bool esValida (punto actual, bool marcas[N][M], char palabra[], int contador){
+	bool correcto =false;
+	if ((actual.fila >=0 && actual.fila <N && actual.columna >=0 && actual.columna<N)){
+		correcto=true;
+	}
+	else{
+		correcto=false;
+	}
+	if (!marcas[actual.fila][actual.columna] ){
+		correcto=true;
+	}
+	else{
+		correcto=false;
+	}
+	if ( palabra[contador]==actual.letra ){
+		correcto=true;
+	}
+	else{
+		correcto=false;
+	}
+
+	return correcto ;
+}
+void tablero(char Matriz [N][M],punto solucion[], int k, char palabra[],bool marcas[N][M],punto destino , bool &exito, int contador){
+	int dir=0;
+	while (dir < 4 &&!exito){
+		solucion[k]= sigDireccion (dir,  solucion[k-1],Matriz);
+		if (esValida( solucion[k],  marcas,  palabra, contador)){//comprueba que no se haya salido de la matriz que no coga una alabra de antes y que la letra es la que toca ahora
+			contador++;
+			if (contador==3)
+			contador=0;
+				if (solucion[k].fila== destino.fila && solucion[k].columna== destino.columna && solucion[k].letra== destino.letra){
+					exito = true;
+					for (int i=0; i <= k; i++)
+						cout << solucion[i].fila << "," << solucion[i].columna << ":"<< solucion[i].letra << endl;
+				}
+				else{
+					marcas[solucion[k].fila][solucion[k].columna]=true;
+					tablero( Matriz , solucion,k+1,  palabra, marcas, destino , exito,  contador);
+					marcas[solucion[k].fila][solucion[k].columna]=false;
+					contador--;
+				}
+		}
+		dir++;
+	}
+
+}
+int main() {
+   bool marcas[N][M];
+   char Matriz [N][M];
+   //
+   Matriz[0][0]='M';
+   Matriz[0][1]='D';
+   Matriz[0][2]='A';
+   Matriz[0][3]='A';
+   Matriz[0][4]='E';
+   Matriz[0][5]='E';
+   Matriz[0][6]='D';
+   Matriz[0][7]='A';
+
+   Matriz[1][0]='A';
+   Matriz[1][1]='E';
+   Matriz[1][2]='E';
+   Matriz[1][3]='D';
+   Matriz[1][4]='D';
+   Matriz[1][5]='A';
+   Matriz[1][6]='N';
+   Matriz[1][7]='D';
+
+   Matriz[2][0]='D';
+   Matriz[2][1]='B';
+   Matriz[2][2]='D';
+   Matriz[2][3]='X';
+   Matriz[2][4]='E';
+   Matriz[2][5]='D';
+   Matriz[2][6]='A';
+   Matriz[2][7]='E';
+
+   Matriz[3][0]='E';
+   Matriz[3][1]='A';
+   Matriz[3][2]='E';
+   Matriz[3][3]='D';
+   Matriz[3][4]='A';
+   Matriz[3][5]='R';
+   Matriz[3][6]='T';
+   Matriz[3][7]='D';
+
+   Matriz[4][0]='E';
+   Matriz[4][1]='D';
+   Matriz[4][2]='M';
+   Matriz[4][3]='P';
+   Matriz[4][4]='L';
+   Matriz[4][5]='E';
+   Matriz[4][6]='D';
+   Matriz[4][7]='A';
+
+   //
+   for (int i=0; i < N ; i++){
+	   for (int j=0; j < M ; j++){
+		   marcas[i][j]=false;
+	   }
+   }
+   punto solucion[N*M];
+   solucion[0].fila=4;
+   solucion[0].columna=0;
+   solucion[0].letra=Matriz[4][0];
+   bool exito=false;
+   char palabra[L];
+   palabra[0]='E';
+   palabra[1]='D';
+   palabra[2]='A';
+   int contador=1;
+   punto destino;
+   destino.fila=0;
+   destino.columna=7;
+   destino.letra='A';
+   marcas[4][0]=true;
+
+   tablero( Matriz , solucion,1,  palabra, marcas ,destino , exito, contador);
+   system("pause");
+    return 0;
+}
