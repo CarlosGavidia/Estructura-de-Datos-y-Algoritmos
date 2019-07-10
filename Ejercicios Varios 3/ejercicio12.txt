@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+const int N=7;
+
+int  resuelve (int bolas[], int a, int b){
+	int r;
+	int m= (a+b)/2;
+	if (b+1==a){
+		r=0;
+	}
+	else{
+		if (bolas[m]< bolas[m-1]&& bolas[m]< bolas[m+1]){
+			r=m;
+		}
+		else{
+			if (bolas[m]> bolas[m-1]){
+				r=resuelve ( bolas,a,m );
+			}
+			if (bolas[m]> bolas[m+1]){
+				r=resuelve ( bolas,m,b );
+			}
+		}
+
+
+	}
+	return r;
+}
+
+int main(){
+	int bolas[N];
+	bolas[0]=9;
+	bolas[1]=8;
+	bolas[2]=7;
+	bolas[3]=3;
+	bolas[4]=2;
+	bolas[5]=4;
+	bolas[6]=6;
+	cout << resuelve (bolas,0,N)<< endl;
+	system("pause");
+}
