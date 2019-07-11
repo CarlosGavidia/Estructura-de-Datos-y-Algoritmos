@@ -1,0 +1,63 @@
+#ifndef _POLINOMIO_H_
+#define _POLINOMIO_H_
+#include <iostream>
+using namespace std;
+class Polinomio{
+public:
+	Polinomio();//obtener el polinomio nulo
+	bool polinomioNulo()const;//ver si el polinomio es nulo
+	int obtenerCoeficiente(const int x)const;//ver el i-esimo elemento
+	int grado()const;
+	void insertar (const int numero, const int coeficiente);
+	void sumar (const Polinomio &p1, const Polinomio &p2);
+	void multiplicar (const Polinomio &p1, const Polinomio &p2);
+	void mostrar ()const{
+		for (int i=_tam;_tam>=2;i++){
+			if (_elementos[i]>0)
+				cout << _elementos[i] << "x" << "^"<< i<< endl;
+		}
+		if (_elementos[1]>0)
+		cout << _elementos[1] << "x" << endl;
+		if (_elementos[0]>0)
+		cout << _elementos[0] << endl;
+	}
+private:
+	static const int MAX=50;
+	int _tam;
+	int _elementos[MAX];
+};
+Polinomio::Polinomio(){
+	_tam=1;
+	_elementos[0]=0;
+}
+bool Polinomio:: polinomioNulo()const{
+	return _tam==1 &&_elementos[0]==0;
+}
+int Polinomio:: obtenerCoeficiente(const int x)const{
+	return _elementos[x];
+}
+int Polinomio:: grado()const{
+	return _tam-1;
+}
+void Polinomio:: insertar (const int numero, const int coeficiente){
+	if (_elementos[coeficiente-1]!=0)
+		_elementos[coeficiente-1]=numero;
+	else
+		_elementos[coeficiente-1]+=numero;
+	
+}
+void Polinomio::sumar (const Polinomio &p1, const Polinomio &p2){
+	int final=p2._tam;
+	if (p1._tam> p2._tam)
+		final=p1._tam;
+	for (int i=0; i < final;i++)
+		_elementos[i]= p1._elementos[i]+p2._elementos[i];
+}
+void Polinomio::multiplicar (const Polinomio &p1, const Polinomio &p2){
+	int final=p2._tam;
+	if (p1._tam> p2._tam)
+		final=p1._tam;
+	for (int i=0; i < final;i++)
+		_elementos[i]= p1._elementos[i]*p2._elementos[i];
+}
+#endif

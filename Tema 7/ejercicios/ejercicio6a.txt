@@ -1,0 +1,54 @@
+#ifndef _COMPLEJO_H_
+#define _COMPLEJO_H_
+#include <iostream>
+using namespace std;
+template <class T>
+class Complejo{
+public:
+	Complejo();
+	Complejo(T r, T i);
+	void sumar(const Complejo & c1, const Complejo&c2);
+	void restar(const Complejo & c1, const Complejo&c2);
+	void multiplicar(const Complejo & c1, const Complejo&c2);
+	void dividir(const Complejo & c1, const Complejo&c2);
+	void mostrar ()const;
+private:
+	float _real;
+	float _imaginaria;
+};
+template <class T>
+Complejo<T>::Complejo(){
+	_real=0;
+	_imaginaria=0;
+}
+template <class T>
+Complejo<T>::Complejo(T r, T i){
+	_real=r;
+	_imaginaria=i;
+}
+template <class T>
+void Complejo<T>::sumar(const Complejo & c1, const Complejo&c2){
+	_real=c1._real+c2._real;
+	_imaginaria=c1._imaginaria+c2._imaginaria;
+}
+template <class T>
+void Complejo<T>::restar(const Complejo & c1, const Complejo&c2){
+	_real=c1._real-c2._real;
+	_imaginaria=c1._imaginaria-c2._imaginaria;
+}
+template <class T>
+void Complejo<T>::multiplicar(const Complejo & c1, const Complejo&c2){
+	_real=c1._real*c2._real;
+	_imaginaria=c1._imaginaria*c2._imaginaria;
+}
+template <class T>
+void Complejo<T>::dividir(const Complejo & c1, const Complejo&c2){
+	_real=c1._real/c2._real;
+	_imaginaria=c1._imaginaria/c2._imaginaria;
+}
+template <class T>
+void Complejo<T>::mostrar ()const{
+	if (_real !=0 && _imaginaria !=0)
+		cout << _real << "+" << _imaginaria<< "i"<< endl;
+}
+#endif

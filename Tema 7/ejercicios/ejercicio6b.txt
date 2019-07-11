@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+#include "Complejo.h"
+using namespace std;
+
+int main() {
+	Complejo <double> c1 (3,4);
+	Complejo <double> c2 (5,6);
+	Complejo <double> c;
+	c.sumar (c1,c2);
+	c.mostrar();
+	c.restar (c1,c2);
+	c.mostrar();
+	c.multiplicar (c1,c2);
+	c.mostrar();
+	c.dividir (c1,c2);
+	c.mostrar();
+    system ("pause");
+    return 0;
+}

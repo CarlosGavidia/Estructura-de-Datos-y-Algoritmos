@@ -1,0 +1,45 @@
+#ifndef _COMPLEJO_H_
+#define _COMPLEJO_H_
+#include <iostream>
+using namespace std;
+class Complejo{
+public:
+	Complejo();
+	Complejo(float r, float );
+	void sumar(const Complejo & c1, const Complejo&c2);
+	void restar(const Complejo & c1, const Complejo&c2);
+	void multiplicar(const Complejo & c1, const Complejo&c2);
+	void dividir(const Complejo & c1, const Complejo&c2);
+	void mostrar ()const{
+		if (_real !=0 && _imaginaria !=0)
+			cout << _real << "+" << _imaginaria<< "i"<< endl;
+	}
+private:
+	float _real;
+	float _imaginaria;
+};
+Complejo::Complejo(){
+	_real=0;
+	_imaginaria=0;
+}
+Complejo::Complejo(float r, float i){
+	_real=r;
+	_imaginaria=i;
+}
+void Complejo::sumar(const Complejo & c1, const Complejo&c2){
+	_real=c1._real+c2._real;
+	_imaginaria=c1._imaginaria+c2._imaginaria;
+}
+void Complejo::restar(const Complejo & c1, const Complejo&c2){
+	_real=c1._real-c2._real;
+	_imaginaria=c1._imaginaria-c2._imaginaria;
+}
+void Complejo::multiplicar(const Complejo & c1, const Complejo&c2){
+	_real=c1._real*c2._real;
+	_imaginaria=c1._imaginaria*c2._imaginaria;
+}
+void Complejo::dividir(const Complejo & c1, const Complejo&c2){
+	_real=c1._real/c2._real;
+	_imaginaria=c1._imaginaria/c2._imaginaria;
+}
+#endif

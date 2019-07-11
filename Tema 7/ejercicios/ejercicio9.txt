@@ -1,0 +1,91 @@
+#ifndef _COMPLEJO_H_
+#define _COMPLEJO_H_
+#include <iostream>
+using namespace std;
+template <class T>
+class Complejo{
+public:
+	Complejo();
+	bool esVacio()const;
+	void insertar(const T &e);
+	bool esta(const T &e)const;
+	int multiplicidad(const T &e)const;
+	void eliminar(const T &e);
+	void eliminarTodos(const T &e);
+	void vaciar();
+private:
+	const int MAX=50;
+	int contador;
+	T array[MAX];
+};
+template <class T>
+Complejo<T>::Complejo(){
+	contador=0;
+}
+template <class T>
+bool esVacio()const{
+	return contador==0;
+}
+template <class T>
+void insertar(const T &e){
+	if (MAX>contador){
+		array[contador]=e;
+		contador++;
+	}
+}
+template <class T>
+bool esta(const T &e)const{
+	bool encontrado=false;
+	int i=0;
+	while (!encontrado && i <contador){
+		if (array[i]==e)
+			encontrado=true;
+		i++;
+	}
+	return encontrado;
+}
+template <class T>
+int multiplicidad(const T &e)const{
+	int contador=0;
+	for (int i=0; i < contador; i++){
+		if (array[i]==e)
+			contador++;
+	}
+	return contador;
+}
+template <class T>
+void eliminar(const T &e){
+	bool encontrado=false;
+	int i=0;
+	while (!encontrado && i <contador){
+		if (array[i]==e){
+			encontrado=true;
+		}
+		i++;
+	}
+	if (encontrado){
+		 for(int i= e; i<contador-1; i++)
+        array[i]= array[i+1];
+	}
+}
+template <class T>
+void eliminarTodos(const T &e){
+	bool encontrado=false;
+	int i=0;
+	while (!encontrado && i <contador){
+		if (array[i]==e){
+			encontrado=true;
+			for(int i= e; i<contador-1; i++)
+				array[i]= array[i+1];
+		}
+		i++;
+	}
+		
+}
+template <class T>
+void vaciar(){
+	for (int i=0; i<contador; i++)
+		array[i]=0;
+	contador=0;
+}
+#endif

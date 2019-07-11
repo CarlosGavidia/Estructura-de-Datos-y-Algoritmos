@@ -1,0 +1,113 @@
+#ifndef _CONJUNTO_H_
+#define _CONJUNTO_H_
+#include <iostream>
+using namespace std;
+class Conjunto{
+public:
+	Conjunto();
+	bool insertar(const int &e);
+	bool eliminar(const int &e); 
+	void mostrar ()const{
+		for (int i=0; i <_tam;i++)
+			cout << _elementos[i] << endl;
+	}
+	//nuevos
+	int cardinal()const;
+	Conjunto(const int &e);
+	void unir(const Conjunto &c1, const Conjunto&c2);
+	void interseccion(const Conjunto &c1, const Conjunto&c2);
+	void diferencia(const Conjunto &c1, const Conjunto&c2);
+private:
+	static const int MAX=50;
+	int _tam;
+	int _elementos[MAX];
+};
+
+void Conjunto::unir(const Conjunto &c1, const Conjunto&c2){
+	
+	int i=0;
+	while ( i < c1._tam){
+		_elementos[i]=c1._elementos[i];
+		i++;
+	}
+	int j=0;
+	while ( j < c2._tam){
+		_elementos[i]=c2._elementos[j];
+		i++;
+		j++;
+	}
+
+	_tam=i;
+}
+void Conjunto::interseccion(const Conjunto &c1, const Conjunto&c2){
+	_tam=0;
+	for (int i=0; i < c1._tam; i++){
+		for (int j =0; j < c2._tam; j++){
+			if (c1._elementos[i]==c2._elementos[j]){
+				_elementos[_tam]=c1._elementos[i];
+				_tam++;
+			}
+		}
+	}
+}
+void Conjunto::diferencia(const Conjunto &c1, const Conjunto&c2){
+	_tam=0;
+	int i=0,j=0;
+	bool encontrado=false;
+	while (i< c1._tam){
+		while (j<c2._tam && !encontrado){
+			if (c1._elementos[i]==c2._elementos[j])
+				encontrado=true;
+			j++;
+
+		}
+		if (!encontrado){
+			_elementos[_tam]=c1._elementos[i];
+			_tam++;
+		}
+
+		i++;
+		encontrado=false;
+	}
+}
+
+int Conjunto:: cardinal()const{
+	return _tam;
+}
+
+Conjunto::Conjunto(const int&e){
+	_tam=1;
+	_elementos[0]=e;
+}
+
+Conjunto::Conjunto(){
+	_tam=0;
+}
+
+bool Conjunto::insertar(const int&e){
+	bool error=false;
+	if (_tam==MAX)
+		error=true;
+	else{
+		_elementos[_tam]=e;
+		_tam++;
+	}
+	return error;
+}
+
+bool Conjunto::eliminar(const int& e){
+	bool esta = false;
+ int i=0;
+ while (i<_tam){
+if (_elementos[i]==e){
+// pasamos el ultimo elemento a su lugar
+ _elementos[i] =
+_elementos[_tam-1];
+ _tam --;
+ esta = true;
+}
+ else i++;
+ }
+ return !esta;
+}
+#endif
