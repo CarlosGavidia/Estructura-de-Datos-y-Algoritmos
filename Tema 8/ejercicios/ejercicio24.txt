@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+#include "lista.h"
+using namespace std;
+
+void calcular(const Lista<int> &l1,const Lista<int>&l2 ){
+	Lista<int>::ConstIterator actual1= l1.cbegin();
+	Lista<int>::ConstIterator final1= l1.cend();
+	Lista<int>::ConstIterator actual2= l2.cbegin();
+	Lista<int>::ConstIterator final2= l2.cend();
+
+	Lista <int> resultado;
+	while(actual1!=final1 && actual2!=final2){
+		if (actual1.elem()==actual2.elem()){
+			resultado.pon_final(actual1.elem());
+			actual1.next();
+			actual2.next();
+		}
+		else if (actual1.elem()>actual2.elem()){
+			resultado.pon_final(actual2.elem());
+			actual2.next();
+		}
+		else if (actual1.elem()<actual2.elem()){
+			resultado.pon_final(actual1.elem());
+			actual1.next();
+		}
+	}
+	while (actual1!=final1){
+		resultado.pon_final(actual1.elem());
+		actual1.next();
+	}
+	while (actual2!=final2){
+		resultado.pon_final(actual2.elem());
+		actual2.next();
+	}
+
+	Lista<int>::ConstIterator a=resultado.cbegin();
+	Lista<int>::ConstIterator f= resultado.cend();
+	while (a!=f){
+		cout << a.elem() << " " ;
+		a.next();
+	}
+	
+}
+
+int main() {
+	Lista<int> l1;
+	Lista<int> l2;
+	
+	l1.pon_final(1);
+	l1.pon_final(2);
+	l1.pon_final(5);
+
+	l2.pon_final(1);
+	l2.pon_final(3);
+	
+	calcular(l1,l2);
+	
+    system ("pause");
+    return 0;
+}

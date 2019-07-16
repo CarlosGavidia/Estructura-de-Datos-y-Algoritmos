@@ -1,0 +1,9 @@
+void duplicar(){
+		Nodo *n =_prim;
+		for(int i =0; i < _numElems; i++){
+			insertaElem(n->_elem,n,n->_sig);
+			n=n->_sig;
+			n=n->_sig;
+			
+		}
+	}

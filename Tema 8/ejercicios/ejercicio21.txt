@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include "lista.h"
+using namespace std;
+
+int calcular( const Lista<int> &l1){
+	int n=0;
+	int suma =0;
+	Lista<int>::ConstIterator actual= l1.cbegin();
+	Lista<int>::ConstIterator final= l1.cend();
+	while(actual!=final){
+		if (actual.elem()==suma)
+			n++;
+		suma+=actual.elem();
+		actual.next();
+	}
+	return n;
+}
+
+int main() {
+	Lista<int> l1;
+	
+	
+	l1.pon_final(3);
+	l1.pon_final(5);
+	l1.pon_final(8);
+	l1.pon_final(1);
+	l1.pon_final(17);
+	cout << calcular(l1) << endl;
+    system ("pause");
+    return 0;
+}

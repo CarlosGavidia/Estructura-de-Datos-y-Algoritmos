@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include "pila.h"
+using namespace std;
+
+int main() {
+	int n;
+	int errores=0;
+	Pila <char> p;
+		while ( ! cin.eof()) {
+			char c = cin.get();
+			if (c=='(' || c=='{' || c=='[' ){
+				p.apila(c);
+			}
+			else{
+				if (c==')' ){
+					if ( p.esVacia() || p.cima()!='(')
+						errores++;
+					else
+						p.desapila();
+
+				}
+				else if (c=='}' ){
+					if (p.esVacia() ||p.cima()!='{')
+						errores++;
+					else
+						p.desapila();
+
+				}
+				else if (c==']' ){
+					if (p.esVacia() || p.cima()!='[')
+						errores++;
+					else
+						p.desapila();
+				}
+				else if (c=='\n'){
+					if (errores==0 && p.esVacia()){
+						cout << "YES" << endl;
+					}
+					else{
+						cout << "NO" << endl;
+					}
+					//vaciamos la pila
+					while (!p.esVacia()){
+						p.desapila();
+					}
+			
+					errores = 0;
+
+				}
+			}
+		}
+		
+    system ("pause");
+    return 0;
+}

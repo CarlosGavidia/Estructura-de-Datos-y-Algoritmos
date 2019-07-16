@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include "lista.h"
+using namespace std;
+
+void calcular(Lista<int> &l1){
+	Lista<int>::Iterator actual= l1.begin();
+	Lista<int>::Iterator final= l1.end();
+	while(actual!=final){
+		l1.insertar(actual.elem(),actual);
+		actual.next();
+	}
+
+}
+
+int main() {
+	Lista<int> l1;
+	
+	
+	l1.pon_final(3);
+	l1.pon_final(5);
+	l1.pon_final(8);
+	calcular(l1);
+	Lista<int>::ConstIterator actual= l1.cbegin();
+	Lista<int>::ConstIterator final= l1.cend();
+	while(actual!=final){
+		cout << actual.elem() << " ";
+		actual.next();
+	}
+
+    system ("pause");
+    return 0;
+}

@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include "pila.h"
+using namespace std;
+
+void escribir (int n){
+	Pila <int> p;
+	int total=0;
+	while (n>9){
+		p.apila(n%10);
+		total=total+(n%10);
+		n=n/10;
+	}
+	p.apila(n);
+	total=total+n;
+	cout << p.cima();
+	p.desapila();
+	while (!p.esVacia()){
+		cout << " + "<< p.cima();
+		p.desapila();
+	}
+	cout <<" = " << total << endl;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	escribir(n);
+    system ("pause");
+    return 0;
+}
