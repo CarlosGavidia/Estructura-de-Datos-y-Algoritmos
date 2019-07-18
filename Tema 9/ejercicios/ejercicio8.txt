@@ -1,0 +1,92 @@
+#include "diccionario.h"
+#include "lista.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+struct ejercicio {
+	string nombre;
+	int puntuacion;
+};
+
+void profesor (const Lista<ejercicio>& aprobados,const Lista<ejercicio>& suspensos){
+	Diccionario <string,int> resultados;
+	//Recorro la primera lista
+	Lista <ejercicio>::ConstIterator primera =aprobados.cbegin();
+	while (primera!=aprobados.cend()){
+		ejercicio ejer= primera.elem();
+		Diccionario<string,int>::Iterator ap=resultados.busca(ejer.nombre);
+		if (ap==resultados.end()){
+			resultados.inserta(ejer.nombre,ejer.puntuacion);
+		}
+		else{
+			ap.valor()=ap.valor()+ejer.puntuacion;
+		}
+		primera.next();
+	}
+
+	//Recorro la segunda lista
+	Lista <ejercicio>::ConstIterator segunda =suspensos.cbegin();
+	while (segunda!=suspensos.cend()){
+		ejercicio ejer= segunda.elem();
+		Diccionario<string,int>::Iterator ap=resultados.busca(ejer.nombre);
+		if (ap==resultados.end()){
+			resultados.inserta(ejer.nombre,ejer.puntuacion);
+		}
+		else{
+			ap.valor()=ap.valor()+ejer.puntuacion;
+		}
+		segunda.next();
+	}
+
+	//Muestro el diccionario solo los de valor >=0
+
+	Diccionario <string,int>::ConstIterator it= resultados.cbegin();
+	while(it!=resultados.cend()){
+		if (it.valor()>0){
+			cout << it.clave() << "     " << it.valor() << endl;
+		}
+		it.next();
+	}
+
+}
+
+int main() {
+	Lista<ejercicio> aprobados;
+	Lista<ejercicio> suspensos;
+	//lo llenamos los aprobados
+	ejercicio ej;
+	ej.nombre="Carlos";
+	ej.puntuacion=7;
+	aprobados.pon_final(ej);
+	ej.nombre="Lucia";
+	ej.puntuacion=2;
+	aprobados.pon_final(ej);
+	ej.nombre="Maria";
+	ej.puntuacion=9;
+	aprobados.pon_final(ej);
+	ej.nombre="Maria";
+	ej.puntuacion=2;
+	aprobados.pon_final(ej);
+	ej.nombre="Carlos";
+	ej.puntuacion=4;
+	aprobados.pon_final(ej);
+	//lo llenamos los suspensos
+	ej.nombre="Carlos";
+	ej.puntuacion=-4;
+	suspensos.pon_final(ej);
+	ej.nombre="Andres";
+	ej.puntuacion=-5;
+	suspensos.pon_final(ej);
+	ej.nombre="Maria";
+	ej.puntuacion=-3;
+	suspensos.pon_final(ej);
+	
+	profesor (aprobados,suspensos);
+
+	system("pause");
+	return 0;
+}
