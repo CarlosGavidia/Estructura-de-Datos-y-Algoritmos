@@ -1,0 +1,24 @@
+//ejercicio 1 en el .h
+	  void listaNodos(Nodo *n,vector<Nodo*>&nodos_ordenados){//pongo en el vector los nodos del arbol en forma inorden(ver pdf tema 9 lo del recorrido inorden)
+		  if (n!=NULL){
+			  listaNodos(n->_iz,nodos_ordenados);
+			  nodos_ordenados.push_back(n);
+			  listaNodos(n->_dr,nodos_ordenados);
+		  }
+	  }
+	  Nodo* ordenar (vector<Nodo*>&nodos_ordenados,int inicio,int fin){//ordenamos en array con el algorimo de busqueda binaria
+		  if (inicio>fin)return NULL;
+		  else{
+			int mitad=(inicio+fin)/2;
+			Nodo *aiz= ordenar (nodos_ordenados,inicio,mitad-1);
+			Nodo *adr= ordenar (nodos_ordenados,mitad+1,fin);
+			vector[mitad]->_iz=aiz;
+			vector[mitad]->_dr=adr;
+			return vector[mitad];
+		  }
+	  }
+	  void balancear(){
+		  vector<Nodo*>nodos_ordenados;
+		  listaNodos(_ra,nodos_ordenados);//al final tendre una lista con todos los nodos ordenados si esta balanceado, si no lo esta habra que ordenadorlos:
+		  _ra=ordenar(nodos_ordenados,0,nodos_ordenados.size()-1);
+	  }
